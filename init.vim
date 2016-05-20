@@ -19,6 +19,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'vrybas/vim-flayouts'
 Plug 'simnalamburt/vim-mundo'
 Plug 'tpope/vim-surround'
+Plug 'altercation/vim-colors-solarized'
 
 call plug#end()
 
@@ -27,13 +28,16 @@ call plug#end()
 " GENERIC OPTIONS
 
 "*****************************************************************************"
- 
+
 " Use system clipboard for all copy/paste operations.
 set clipboard=unnamed
 
 " Show Git branch name in statusline
 set statusline=%f\ %=%{fugitive#statusline()}%(\ %c%)
- 
+
+" Colorscheme
+colorscheme solarized
+
 "*****************************************************************************"
 "
 " KEY MAPPINGS
