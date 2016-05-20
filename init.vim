@@ -17,6 +17,7 @@ Plug 'vim-scripts/bufexplorer.zip'
 Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-fugitive'
 Plug 'vrybas/vim-flayouts'
+Plug 'simnalamburt/vim-mundo'
 
 call plug#end()
 
@@ -99,3 +100,5 @@ endfunction
 
 noremap <leader><leader>r :GlresolveConflict<cr>
 
+" Mundo
+nnoremap <Leader>u :MundoToggle<CR>
