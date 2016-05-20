@@ -120,7 +120,7 @@ nnoremap <Leader>u :MundoToggle<CR>
 
 " Neomake
 let g:neomake_error_sign = {
-    \ 'text': '✖',
+    \ 'text': 'E>',
     \ 'texthl': 'WarningMsg',
     \ }
 
