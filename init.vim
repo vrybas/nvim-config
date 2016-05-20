@@ -42,6 +42,9 @@ set statusline=%f\ %=%{fugitive#statusline()}%(\ %c%)
 " Map <Leader>
 let mapleader = ","
 
+" Call Save function to save file and peform other work.
+nnoremap <Space> :call Save()<CR>
+
 "*****************************************************************************"
 "
 " PLUGIN CONFIGURATION
@@ -102,3 +105,33 @@ noremap <leader><leader>r :GlresolveConflict<cr>
 
 " Mundo
 nnoremap <Leader>u :MundoToggle<CR>
+
+"*****************************************************************************"
+"
+" FUNCTIONS
+
+"*****************************************************************************"
+
+
+" Remove all spaces from the end of each line
+"
+fun! RemoveSpaces()
+  if &bin | return | endif
+  if search('\s\+$', 'n')
+    let line = line('.')
+    let col = col('.')
+    sil %s/\s\+$//ge
+    call cursor(line, col)
+  endif
+endf
+
+" Saves current buffer, removes spaces, etc.
+"
+function! Save()
+    call RemoveSpaces()
+    execute 'w!'
+    execute 'mkview'
+    "execute 'GitGutter'
+    "execute 'SyntasticCheck'
+endfunction
+
