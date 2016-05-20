@@ -20,6 +20,7 @@ Plug 'vrybas/vim-flayouts'
 Plug 'simnalamburt/vim-mundo'
 Plug 'tpope/vim-surround'
 Plug 'altercation/vim-colors-solarized'
+Plug 'gorkunov/smartpairs.vim'
 
 call plug#end()
 
