@@ -14,6 +14,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'mileszs/ack.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'vim-scripts/bufexplorer.zip'
+Plug 'easymotion/vim-easymotion'
 
 call plug#end()
 
@@ -41,3 +42,5 @@ let mapleader = ","
 
 "*****************************************************************************"
 
+" Easymotion
+map f <Plug>(easymotion-prefix)
