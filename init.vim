@@ -18,6 +18,7 @@ Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-fugitive'
 Plug 'vrybas/vim-flayouts'
 Plug 'simnalamburt/vim-mundo'
+Plug 'tpope/vim-surround'
 
 call plug#end()
 
