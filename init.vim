@@ -16,6 +16,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'vim-scripts/bufexplorer.zip'
 Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-fugitive'
+Plug 'vrybas/vim-flayouts'
 
 call plug#end()
 
@@ -65,4 +66,36 @@ function! GdiffOff()
 endfunction
 vmap <leader>0 :diffget<cr>
 vmap <leader>9 :diffput<cr>
+
+" Flayouts
+noremap <leader>gh :GllogPatchTab 200<cr>
+noremap <leader>h  :GllogPatch 200 %<cr>
+noremap <leader><leader>gh :GllogPatchTab 200 %<cr>
+noremap <leader><leader>h  :GllogPatch 200<cr>
+
+noremap <leader>gp :GlpullRequestSummaryTab<cr>
+noremap <leader>gc :GlpullRequestCommitsTab<cr>
+
+noremap <leader><leader>gp :call GlpullRequestSummaryTabOrigin()<cr>
+noremap <leader><leader>gc :call GlpullRequestCommitsTabOrigin()<cr>
+
+function! GlpullRequestSummaryTabOrigin()
+  execute 'GlpullRequestSummaryTab origin/'.fugitive#head()
+endfunction
+
+function! GlpullRequestCommitsTabOrigin()
+  execute 'GlpullRequestCommitsTab origin/'.fugitive#head()
+endfunction
+
+command -nargs=* Gpcheckout call Gpcheckout(<f-args>)
+
+function! Gpcheckout(arg)
+  let cmd = 'git pcheckout '.a:arg
+  echom "Checking out ".a:arg.' ...'
+  call system(cmd)
+  execute 'GlpullRequestSummaryTab'
+  execute 'GlopenFromDiff'
+endfunction
+
+noremap <leader><leader>r :GlresolveConflict<cr>
 
