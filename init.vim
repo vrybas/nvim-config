@@ -23,6 +23,7 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'gorkunov/smartpairs.vim'
 Plug 'neomake/neomake'
 Plug 'airblade/vim-gitgutter'
+Plug 'ctrlpvim/ctrlp.vim'
 
 call plug#end()
 
@@ -132,6 +133,15 @@ let g:neomake_warning_sign = {
 let g:gitgutter_sign_column_always = 1
 let g:gitgutter_eager = 0
 let g:gitgutter_realtime = 0
+
+" CtrlP.vim
+let g:ctrlp_map = ',,e'
+let g:ctrlp_regexp = 0
+let g:ctrlp_switch_buffer = 'et'
+let g:ctrlp_tabpage_position = 'al'
+let g:ctrlp_clear_cache_on_exit = 0
+let g:ctrlp_custom_ignore = '\v[\/]doc[\/]|\.(git|rsync_cache|idea|)$'
+let g:ctrlp_by_filename = 1
 
 "*****************************************************************************"
 "
