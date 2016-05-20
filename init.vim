@@ -24,6 +24,9 @@ Plug 'gorkunov/smartpairs.vim'
 Plug 'neomake/neomake'
 Plug 'airblade/vim-gitgutter'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'tpope/vim-bundler.git'
+Plug 'tpope/vim-rake.git'
+Plug 'tpope/vim-rbenv.git'
 
 call plug#end()
 
@@ -44,6 +47,11 @@ colorscheme solarized
 
 " Show line numbers
 set nu
+
+" Shell & path parameters
+set shell=/bin/bash
+let $PATH=$HOME.'/.rbenv/shims:'.$PATH
+let $PATH=$HOME.'/.dotfiles/bin:'.$PATH
 
 "*****************************************************************************"
 "
