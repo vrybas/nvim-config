@@ -21,13 +21,15 @@ Plug 'simnalamburt/vim-mundo'
 Plug 'tpope/vim-surround'
 Plug 'altercation/vim-colors-solarized'
 Plug 'gorkunov/smartpairs.vim'
+Plug 'neomake/neomake'
+Plug 'airblade/vim-gitgutter'
 
 call plug#end()
 
 "*****************************************************************************"
 "
 " GENERIC OPTIONS
-
+"
 "*****************************************************************************"
 
 " Use system clipboard for all copy/paste operations.
@@ -39,10 +41,13 @@ set statusline=%f\ %=%{fugitive#statusline()}%(\ %c%)
 " Colorscheme
 colorscheme solarized
 
+" Show line numbers
+set nu
+
 "*****************************************************************************"
 "
 " KEY MAPPINGS
-
+"
 "*****************************************************************************"
 
 " Map <Leader>
@@ -54,7 +59,7 @@ nnoremap <Space> :call Save()<CR>
 "*****************************************************************************"
 "
 " PLUGIN CONFIGURATION
-
+"
 "*****************************************************************************"
 
 " Easymotion
@@ -112,12 +117,27 @@ noremap <leader><leader>r :GlresolveConflict<cr>
 " Mundo
 nnoremap <Leader>u :MundoToggle<CR>
 
+" Neomake
+let g:neomake_error_sign = {
+    \ 'text': '✖',
+    \ 'texthl': 'WarningMsg',
+    \ }
+
+let g:neomake_warning_sign = {
+    \ 'text': '➤',
+    \ 'texthl': 'WarningMsg',
+    \ }
+
+" GitGutter.vim
+let g:gitgutter_sign_column_always = 1
+let g:gitgutter_eager = 0
+let g:gitgutter_realtime = 0
+
 "*****************************************************************************"
 "
 " FUNCTIONS
-
+"
 "*****************************************************************************"
-
 
 " Remove all spaces from the end of each line
 "
@@ -137,7 +157,24 @@ function! Save()
     call RemoveSpaces()
     execute 'w!'
     execute 'mkview'
-    "execute 'GitGutter'
-    "execute 'SyntasticCheck'
+    execute 'Neomake'
+    execute 'GitGutter'
 endfunction
 
+function! ResetColours()
+    highlight clear SignColumn
+    highlight SignColumn            guibg=darkgrey
+    highlight GitGutterAdd          guifg=#009900 guibg=NONE ctermfg=2 ctermbg=NONE
+    highlight GitGutterChange       guifg=#bbbb00 guibg=NONE ctermfg=3 ctermbg=NONE
+    highlight GitGutterDelete       guifg=#ff2222 guibg=NONE ctermfg=1 ctermbg=NONE
+    highlight default link GitGutterChangeDelete GitGutterChange
+endfunction
+
+
+"*****************************************************************************"
+"
+" AUTO COMMANDS
+"
+"*****************************************************************************"
+"
+autocmd BufEnter * call ResetColours()
