@@ -66,6 +66,10 @@ nnoremap <Space> :call Save()<CR>
 " Easymotion
 map f <Plug>(easymotion-prefix)
 
+"Bufexplorer
+let g:bufExplorerFindActive=0
+nmap <leader>f :BufExplorer<CR>
+
 " Fugitive.vim
 noremap <leader>gb :Gblame<CR>
 noremap <leader>gs :Gstatus<CR>
