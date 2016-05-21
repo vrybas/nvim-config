@@ -28,6 +28,7 @@ Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-rake'
 Plug 'tpope/vim-rbenv'
 Plug 'yegappan/mru'
+Plug 'tpope/vim-vinegar'
 
 call plug#end()
 
