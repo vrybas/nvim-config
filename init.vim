@@ -41,6 +41,32 @@ call plug#end()
 " Use system clipboard for all copy/paste operations.
 set clipboard=unnamed
 
+" Shell & path parameters
+set shell=/bin/bash
+let $PATH=$HOME.'/.rbenv/shims:'.$PATH
+let $PATH=$HOME.'/.dotfiles/bin:'.$PATH
+
+" Reload file immediately when changed outside of Vim
+set autoread
+
+" UTF8 Support
+set encoding=utf-8
+
+" 'g' flag is used by default in commands
+set gdefault
+
+" Show 3 line after and before cursor when scrolling
+set scrolloff=3
+
+" Tabulation Size
+set ts=2
+
+" Tabulation symbols replaced with spaces
+set expandtab
+
+" N characters text is moved with 'shift' command
+set sw=2
+
 " Show Git branch name in statusline
 set statusline=%f\ %=%{fugitive#statusline()}%(\ %c%)
 
@@ -50,10 +76,31 @@ colorscheme solarized
 " Show line numbers
 set nu
 
-" Shell & path parameters
-set shell=/bin/bash
-let $PATH=$HOME.'/.rbenv/shims:'.$PATH
-let $PATH=$HOME.'/.dotfiles/bin:'.$PATH
+" Disable text wrapping
+set nowrap
+
+" Make indent level equal 2 spaces
+set shiftwidth=2
+
+" Auto indent to current level
+set ai
+
+" Smart indent
+set si
+
+" Always show tabs
+set stal=2
+
+" Allow dirty unsaved buffers
+set hidden
+
+" Disable .swp files creation for every buffer
+set noswapfile
+
+" If search in lowercase, search in uppercase too, but if search is in
+" uppercase, search in uppercase.
+set ignorecase
+set smartcase
 
 "*****************************************************************************"
 "
