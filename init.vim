@@ -341,6 +341,13 @@ function! Refactor()
     normal! zz
 endfunction
 
+" Sets vertical ruler and autowrapping
+function! WrapColumn(value)
+  execute "setlocal colorcolumn=" . join(range(a:value+1,335), ',')
+  let &textwidth = a:value
+  setlocal fo=aw2tq
+endfunction
+
 "*****************************************************************************"
 "
 " AUTO COMMANDS
