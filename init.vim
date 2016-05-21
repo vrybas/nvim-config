@@ -114,6 +114,9 @@ let mapleader = ","
 " Call Save function to save file and peform other work.
 nnoremap <Space> :call Save()<CR>
 
+" Toggle Relative Line Numbers
+nmap <leader>r :call ToggleRelativeLineNumbers()<CR>
+
 "*****************************************************************************"
 "
 " PLUGIN CONFIGURATION
@@ -241,6 +244,13 @@ function! ResetColours()
     highlight default link GitGutterChangeDelete GitGutterChange
 endfunction
 
+function! ToggleRelativeLineNumbers()
+  if(&relativenumber == 1)
+    set nornu
+  else
+    set rnu
+  endif
+endfunc
 
 "*****************************************************************************"
 "
