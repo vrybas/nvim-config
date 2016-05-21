@@ -252,6 +252,18 @@ function! ToggleRelativeLineNumbers()
   endif
 endfunc
 
+" Opens tmp buffer with content of current buffer for refactoring
+"
+command Refactor               call Refactor()
+function! Refactor()
+    let linenum = line(".")
+    let tmpfile = tempname().fnamemodify(bufname('%'), ":t")
+    execute 'r !cat % > '.tmpfile
+    execute 'e '.tmpfile
+    execute ':'.linenum
+    normal! zz
+endfunction
+
 "*****************************************************************************"
 "
 " AUTO COMMANDS
