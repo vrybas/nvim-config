@@ -176,6 +176,23 @@ nnoremap <leader>m :noh<CR>
 "
 "*****************************************************************************"
 
+" NERDTree
+
+" tree expand behaviour fix (locate and highlight current file)
+fun! NERDTreeToggleWithFind()
+  NERDTreeToggle
+  exe "normal \<c-w>l"
+  if bufwinnr(t:NERDTreeBufName) > 0
+    NERDTreeFind
+  end
+endf
+
+let NERDTreeShowHidden=1
+let NERDTreeMapJumpPrevSibling='none'
+let NERDTreeMapJumpNextSibling='none'
+let NERDTreeCascadeOpenSingleChildDir=1
+nmap <silent><leader>d :call NERDTreeToggleWithFind()<CR>
+
 " Easymotion
 map f <Plug>(easymotion-prefix)
 
