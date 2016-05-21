@@ -279,6 +279,7 @@ let g:ctrlp_by_filename = 1
 
 " Ack.vim
 nnoremap <leader>a :Ack<space>
+set grepprg=ack\ -a
 
 "*****************************************************************************"
 "
