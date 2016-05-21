@@ -117,6 +117,59 @@ nnoremap <Space> :call Save()<CR>
 " Toggle Relative Line Numbers
 nmap <leader>r :call ToggleRelativeLineNumbers()<CR>
 
+" Do not autoindent lines, when paste from OS buffer
+set pastetoggle=<F6>
+
+" Open current buffer in new tab
+nmap <leader>t :sp<cr><C-w>T
+
+" Close tab
+nmap <leader>W :tabclose<cr>
+
+" Open Tabs by number
+nmap <leader>1 1gt
+nmap <leader>2 2gt
+nmap <leader>3 3gt
+nmap <leader>4 4gt
+nmap <leader>5 5gt
+nmap <leader>6 6gt
+nmap <leader>7 7gt
+nmap <leader>8 8gt
+nmap <leader>9 9gt
+
+" Open class/function definition in new tab
+nnoremap <silent><Leader>g <C-w><C-]><C-w>T
+
+" Create vertical split
+nmap <silent><leader>v <C-w>v<C-w>l
+
+" Create horisontal split
+nmap <silent><leader>s <C-w>s<C-w>j
+
+" Close split
+nmap <silent><leader>x <C-w>c
+
+" Close window and delete buffer
+nmap <silent><leader><leader>x :bd<cr>
+
+" Resize splits
+nnoremap <silent><leader>J :resize +5<cr>
+nnoremap <silent><leader>K :resize -5<cr>
+nnoremap <silent><leader>L :vertical resize +5<cr>
+nnoremap <silent><leader>H :vertical resize -5<cr>
+
+" Navigate between splits
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+" Quit Vim and close all windows without saving
+nnoremap Q :qa!<cr>
+
+" Clear highlight
+nnoremap <leader>m :noh<CR>
+
 "*****************************************************************************"
 "
 " PLUGIN CONFIGURATION
@@ -206,6 +259,9 @@ let g:ctrlp_tabpage_position = 'al'
 let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_custom_ignore = '\v[\/]doc[\/]|\.(git|rsync_cache|idea|)$'
 let g:ctrlp_by_filename = 1
+
+" Ack.vim
+nnoremap <leader>a :Ack<space>
 
 "*****************************************************************************"
 "
