@@ -34,7 +34,7 @@ call plug#end()
 
 "*****************************************************************************"
 "
-" GENERIC OPTIONS
+" GENERAL SETTINGS
 "
 "*****************************************************************************"
 
@@ -104,6 +104,9 @@ set smartcase
 
 " Make the cursor a pipe in insert-mode, and a block in normal-mode
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+
+" Colorcolumn settings
+execute "set colorcolumn=" . join(range(81,82), ',')
 
 "*****************************************************************************"
 "
