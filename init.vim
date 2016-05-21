@@ -102,6 +102,9 @@ set noswapfile
 set ignorecase
 set smartcase
 
+" Make the cursor a pipe in insert-mode, and a block in normal-mode
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+
 "*****************************************************************************"
 "
 " KEY MAPPINGS
