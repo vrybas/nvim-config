@@ -24,9 +24,10 @@ Plug 'gorkunov/smartpairs.vim'
 Plug 'neomake/neomake'
 Plug 'airblade/vim-gitgutter'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'tpope/vim-bundler.git'
-Plug 'tpope/vim-rake.git'
-Plug 'tpope/vim-rbenv.git'
+Plug 'tpope/vim-bundler'
+Plug 'tpope/vim-rake'
+Plug 'tpope/vim-rbenv'
+Plug 'yegappan/mru'
 
 call plug#end()
 
