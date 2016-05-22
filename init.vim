@@ -30,6 +30,14 @@ Plug 'tpope/vim-rbenv'
 Plug 'yegappan/mru'
 Plug 'tpope/vim-vinegar'
 
+function! DoRemote(arg)
+  UpdateRemotePlugins
+endfunction
+Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'ervandew/supertab'
+
 call plug#end()
 
 "*****************************************************************************"
@@ -287,6 +295,14 @@ let g:ctrlp_by_filename = 1
 " Ack.vim
 nnoremap <leader>a :Ack<space>
 set grepprg=ack\ -a
+
+" Deoplete.
+let g:deoplete#enable_at_startup = 1
+
+" UltiSnips
+let g:UltiSnipsSnippetsDir='~/.vim/snippets'
+let g:UltiSnipsEditSplit='vertical'
+nnoremap <leader>ue :UltiSnipsEdit<cr>
 
 "*****************************************************************************"
 "
