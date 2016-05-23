@@ -29,6 +29,7 @@ Plug 'tpope/vim-rake'
 Plug 'tpope/vim-rbenv'
 Plug 'yegappan/mru'
 Plug 'tpope/vim-vinegar'
+Plug 'wincent/terminus'
 
 function! DoRemote(arg)
   UpdateRemotePlugins
@@ -110,11 +111,11 @@ set noswapfile
 set ignorecase
 set smartcase
 
-" Make the cursor a pipe in insert-mode, and a block in normal-mode
-let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
-
 " Colorcolumn settings
 execute "set colorcolumn=" . join(range(81,82), ',')
+
+" Enable Cursorline
+set cursorline
 
 "*****************************************************************************"
 "
@@ -383,3 +384,9 @@ augroup FastEscape
   au InsertEnter * set timeoutlen=0
   au InsertLeave * set timeoutlen=1000
 augroup END
+
+" Disable cursoline when entering INSERT mode
+autocmd InsertEnter * set nocursorline
+
+" Re-enable cursoline when leaving INSERT mode
+autocmd InsertLeave * set cursorline
