@@ -191,6 +191,14 @@ nnoremap <leader>m :noh<CR>
 "
 "*****************************************************************************"
 
+" Vim-Ruby
+let g:rubycomplete_buffer_loading = 1
+let g:rubycomplete_classes_in_global = 1
+let g:rubycomplete_rails = 1
+let g:rubycomplete_load_gemfile = 1
+let g:rubycomplete_use_bundler = 1
+let ruby_fold = 1
+let ruby_spellcheck_strings = 1
 " NERDTree
 
 " tree expand behaviour fix (locate and highlight current file)
