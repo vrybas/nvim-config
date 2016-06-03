@@ -30,6 +30,10 @@ Plug 'tpope/vim-rbenv'
 Plug 'yegappan/mru'
 Plug 'tpope/vim-vinegar'
 Plug 'wincent/terminus'
+Plug 'pangloss/vim-javascript'
+"Plug 'othree/es.next.syntax.vim'
+"Plug 'mxw/vim-jsx'
+"Plug 'ternjs/tern_for_vim'
 
 function! DoRemote(arg)
   UpdateRemotePlugins
@@ -199,6 +203,8 @@ let g:rubycomplete_load_gemfile = 1
 let g:rubycomplete_use_bundler = 1
 let ruby_fold = 1
 let ruby_spellcheck_strings = 1
+
+
 " NERDTree
 
 " tree expand behaviour fix (locate and highlight current file)
@@ -312,6 +318,12 @@ let g:deoplete#enable_at_startup = 1
 let g:UltiSnipsSnippetsDir='~/.vim/snippets'
 let g:UltiSnipsEditSplit='vertical'
 nnoremap <leader>ue :UltiSnipsEdit<cr>
+
+" Vim-JSX
+"let g:jsx_ext_required = 0
+
+" Vim-Tern
+"let tern#is_show_argument_hints_enabled=1
 
 "*****************************************************************************"
 "
