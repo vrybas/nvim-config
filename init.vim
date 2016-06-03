@@ -118,6 +118,10 @@ execute "set colorcolumn=" . join(range(81,82), ',')
 " Enable Cursorline
 set cursorline
 
+" Folds
+set foldlevel=1
+highlight clear Folded
+
 "*****************************************************************************"
 "
 " KEY MAPPINGS
@@ -185,6 +189,10 @@ nnoremap Q :qa!<cr>
 
 " Clear highlight
 nnoremap <leader>m :noh<CR>
+
+" Toggle fold/unfold
+nnoremap <leader>z zR
+nnoremap <leader><leader>z zm
 
 "*****************************************************************************"
 "
