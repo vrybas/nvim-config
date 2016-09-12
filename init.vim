@@ -29,6 +29,7 @@ Plug 'tpope/vim-rake'
 Plug 'tpope/vim-rbenv'
 Plug 'yegappan/mru'
 Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-abolish'
 Plug 'wincent/terminus'
 Plug 'pangloss/vim-javascript'
 
