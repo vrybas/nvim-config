@@ -116,8 +116,8 @@ set smartcase
 " Colorcolumn settings
 execute "set colorcolumn=" . join(range(81,82), ',')
 
-" Enable Cursorline
-set cursorline
+" Disable Cursorline
+set nocursorline
 
 " Folds
 set foldlevel=1
@@ -420,9 +420,3 @@ augroup FastEscape
   au InsertEnter * set timeoutlen=0
   au InsertLeave * set timeoutlen=1000
 augroup END
-
-" Disable cursoline when entering INSERT mode
-autocmd InsertEnter * set nocursorline
-
-" Re-enable cursoline when leaving INSERT mode
-autocmd InsertLeave * set cursorline
