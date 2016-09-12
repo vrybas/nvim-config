@@ -257,9 +257,7 @@ vmap <leader>9 :diffput<cr>
 
 " Flayouts
 nnoremap <leader><Space> :Glc<CR>
-noremap <leader>gh :GllogPatchTab 200<cr>
 noremap <leader>h  :GllogPatch 200 %<cr>
-noremap <leader><leader>gh :GllogPatchTab 200 %<cr>
 noremap <leader><leader>h  :GllogPatch 200<cr>
 
 noremap <leader>gp :GlpullRequestSummaryTab<cr>
