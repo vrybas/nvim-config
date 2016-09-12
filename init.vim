@@ -195,6 +195,9 @@ nnoremap <leader>m :noh<CR>
 nnoremap <leader>z zR
 nnoremap <leader><leader>z zm
 
+" Search Replace with Confirmation
+nnoremap <leader>S :SearchReplaceConfirm<Space>
+
 "*****************************************************************************"
 "
 " PLUGIN CONFIGURATION
@@ -387,6 +390,19 @@ function! WrapColumn(value)
   execute "setlocal colorcolumn=" . join(range(a:value+1,335), ',')
   let &textwidth = a:value
   setlocal fo=aw2tq
+endfunction
+
+" Search and replace project-wide with confirmation
+command -nargs=* SearchReplaceConfirm call SearchReplaceConfirm(<f-args>)
+function! SearchReplaceConfirm(...)
+  let path = a:1
+  let search_pattern = a:2
+  execute "args `ack -l ".search_pattern." ".path."`"
+  if exists('a:3')
+    execute "argdo %s/".search_pattern."/".a:3."/gce | update"
+  else
+    execute "argdo %s/".search_pattern."//gce | update"
+  end
 endfunction
 
 "*****************************************************************************"
