@@ -9,7 +9,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-rails'
-Plug 'scrooloose/nerdtree'
+Plug 'vrybas/nerdtree'
 Plug 'scrooloose/nerdcommenter'
 Plug 'mileszs/ack.vim'
 Plug 'christoomey/vim-tmux-navigator'
@@ -40,6 +40,7 @@ Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'ervandew/supertab'
+Plug 'nathanaelkane/vim-indent-guides'
 
 call plug#end()
 
@@ -198,6 +199,14 @@ nnoremap <leader><leader>z zm
 " Search Replace with Confirmation
 nnoremap <leader>S :SearchReplaceConfirm<Space>
 
+"""" Toggle show trailing characters
+
+set listchars=tab:>-,trail:·,eol:$
+nmap <silent> <leader><leader>ts :set nolist!<CR>
+
+" Copy the whole buffer
+nmap <silent><leader>y :w !pbcopy<CR><CR>
+
 "*****************************************************************************"
 "
 " PLUGIN CONFIGURATION
@@ -260,18 +269,15 @@ nnoremap <leader><Space> :Glc<CR>
 noremap <leader>h  :GllogPatch 200 %<cr>
 noremap <leader><leader>h  :GllogPatch 200<cr>
 
-noremap <leader>gp :GlpullRequestSummaryTab<cr>
-noremap <leader>gc :GlpullRequestCommitsTab<cr>
+noremap <leader>gp :call GlpullRequestSummaryOrigin()<cr>
+noremap <leader>gc :call GlpullRequestCommitsOrigin()<cr>
 
-noremap <leader><leader>gp :call GlpullRequestSummaryTabOrigin()<cr>
-noremap <leader><leader>gc :call GlpullRequestCommitsTabOrigin()<cr>
-
-function! GlpullRequestSummaryTabOrigin()
-  execute 'GlpullRequestSummaryTab origin/'.fugitive#head()
+function! GlpullRequestSummaryOrigin()
+  execute 'GlpullRequestSummary origin/'.fugitive#head()
 endfunction
 
-function! GlpullRequestCommitsTabOrigin()
-  execute 'GlpullRequestCommitsTab origin/'.fugitive#head()
+function! GlpullRequestCommitsOrigin()
+  execute 'GlpullRequestCommits origin/'.fugitive#head()
 endfunction
 
 command -nargs=* Gpcheckout call Gpcheckout(<f-args>)
@@ -310,7 +316,7 @@ let g:ctrlp_map = ',,e'
 let g:ctrlp_regexp = 0
 let g:ctrlp_switch_buffer = 'et'
 let g:ctrlp_tabpage_position = 'al'
-let g:ctrlp_clear_cache_on_exit = 0
+let g:ctrlp_clear_cache_on_exit = 1
 let g:ctrlp_custom_ignore = '\v[\/]doc[\/]|\.(git|rsync_cache|idea|)$'
 let g:ctrlp_by_filename = 1
 
@@ -326,6 +332,11 @@ let g:deoplete#disable_auto_complete = 1
 let g:UltiSnipsSnippetsDir='~/.vim/snippets'
 let g:UltiSnipsEditSplit='vertical'
 nnoremap <leader>ue :UltiSnipsEdit<cr>
+
+" Vim Indent Guides
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_start_level = 2
+let g:indent_guides_guide_size = 1
 
 "*****************************************************************************"
 "
