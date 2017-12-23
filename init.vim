@@ -41,6 +41,7 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'ervandew/supertab'
 Plug 'Yggdroot/indentLine'
+Plug 'scrooloose/syntastic'
 
 call plug#end()
 
@@ -340,6 +341,13 @@ nnoremap <leader>ue :UltiSnipsEdit<cr>
 " IdentLine
 let g:indentLine_color_gui = '#f2e4be'
 let g:indentLine_char = '│'
+
+" Syntastic
+let g:syntastic_enable_signs=1
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_sass_checkers = ['sass_lint']
+let g:elm_syntastic_show_warnings = 1
+let g:syntastic_auto_loc_list = 1
 
 "*****************************************************************************"
 "
