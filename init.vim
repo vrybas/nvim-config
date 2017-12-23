@@ -134,7 +134,8 @@ highlight clear Folded
 let mapleader = ","
 
 " Call Save function to save file and peform other work.
-nnoremap <Space> :call Save()<CR>
+nnoremap <Space> :call FullSave()<CR>
+nnoremap <leader><leader><Space> :call FullSave()<CR>
 
 " Toggle Relative Line Numbers
 nmap <leader>r :call ToggleRelativeLineNumbers()<CR>
@@ -296,6 +297,8 @@ noremap <leader><leader>r :GlresolveConflict<cr>
 nnoremap <Leader>u :MundoToggle<CR>
 
 " Neomake
+let g:neomake_javascript_enabled_makers = ['eslint']
+
 let g:neomake_error_sign = {
     \ 'text': 'E>',
     \ 'texthl': 'WarningMsg',
@@ -307,7 +310,8 @@ let g:neomake_warning_sign = {
     \ }
 
 " GitGutter.vim
-let g:gitgutter_sign_column_always = 1
+set signcolumn=yes
+"let g:gitgutter_sign_column_always = 1
 let g:gitgutter_eager = 0
 let g:gitgutter_realtime = 0
 
@@ -358,7 +362,11 @@ endf
 
 " Saves current buffer, removes spaces, etc.
 "
-function! Save()
+function! QuickSave()
+    execute 'w!'
+endfunction
+
+function! FullSave()
     call RemoveSpaces()
     execute 'w!'
     execute 'mkview'
