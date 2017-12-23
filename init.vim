@@ -40,7 +40,7 @@ Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'ervandew/supertab'
-Plug 'nathanaelkane/vim-indent-guides'
+Plug 'Yggdroot/indentLine'
 
 call plug#end()
 
@@ -337,10 +337,9 @@ let g:UltiSnipsSnippetsDir='~/.vim/snippets'
 let g:UltiSnipsEditSplit='vertical'
 nnoremap <leader>ue :UltiSnipsEdit<cr>
 
-" Vim Indent Guides
-let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_start_level = 2
-let g:indent_guides_guide_size = 1
+" IdentLine
+let g:indentLine_color_gui = '#f2e4be'
+let g:indentLine_char = '│'
 
 "*****************************************************************************"
 "
