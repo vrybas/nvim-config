@@ -201,6 +201,7 @@ let g:javascript_plugin_flow = 1
 
 " FLOW -------------------------------------------------------------------------
 Plug 'flowtype/vim-flow', { 'do': 'npm install -g flow-bin' }
+let g:flow#autoclose = 1
 au BufNewFile,BufRead *.flow set filetype=javascript
 
 " JSX --------------------------------------------------------------------------
