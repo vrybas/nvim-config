@@ -7,41 +7,246 @@
 
 call plug#begin('~/.vim/plugged')
 
+" RUBY -------------------------------------------------------------------------
 Plug 'vim-ruby/vim-ruby'
-Plug 'tpope/vim-rails'
-Plug 'vrybas/nerdtree'
-Plug 'scrooloose/nerdcommenter'
-Plug 'mileszs/ack.vim'
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'vim-scripts/bufexplorer.zip'
-Plug 'easymotion/vim-easymotion'
-Plug 'tpope/vim-fugitive'
-Plug 'vrybas/vim-flayouts'
-Plug 'simnalamburt/vim-mundo'
-Plug 'tpope/vim-surround'
-Plug 'altercation/vim-colors-solarized'
-Plug 'gorkunov/smartpairs.vim'
-Plug 'neomake/neomake'
-Plug 'airblade/vim-gitgutter'
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-rake'
 Plug 'tpope/vim-rbenv'
+let g:rubycomplete_buffer_loading = 1
+let g:rubycomplete_classes_in_global = 1
+let g:rubycomplete_rails = 1
+let g:rubycomplete_load_gemfile = 1
+let g:rubycomplete_use_bundler = 1
+let ruby_fold = 1
+let ruby_spellcheck_strings = 1
+
+" RAILS ------------------------------------------------------------------------
+Plug 'tpope/vim-rails'
+
+" NERDTREE ---------------------------------------------------------------------
+Plug 'vrybas/nerdtree'
+" tree expand behaviour fix (locate and highlight current file)
+fun! NERDTreeToggleWithFind()
+  NERDTreeToggle
+  exe "normal \<c-w>l"
+  if bufwinnr(t:NERDTreeBufName) > 0
+    NERDTreeFind
+  end
+endf
+let NERDTreeShowHidden=1
+let NERDTreeMapJumpPrevSibling='none'
+let NERDTreeMapJumpNextSibling='none'
+let NERDTreeCascadeOpenSingleChildDir=1
+nmap <silent><leader>d :call NERDTreeToggleWithFind()<CR>
+
+" NERDCOMMENTER ----------------------------------------------------------------
+Plug 'scrooloose/nerdcommenter'
+
+" ACK --------------------------------------------------------------------------
+Plug 'mileszs/ack.vim'
+nnoremap <leader>a :Ack<space>
+set grepprg=ack\ -a
+
+" TMUX-NAVIGATOR ---------------------------------------------------------------
+Plug 'christoomey/vim-tmux-navigator'
+
+" BUFEXPLORER ------------------------------------------------------------------
+Plug 'vim-scripts/bufexplorer.zip'
+let g:bufExplorerFindActive=0
+nmap <leader>f :BufExplorer<CR>
+
+" EASYMOTION -------------------------------------------------------------------
+Plug 'easymotion/vim-easymotion'
+map f <Plug>(easymotion-prefix)
+
+" FUGITIVE ---------------------------------------------------------------------
+Plug 'tpope/vim-fugitive'
+noremap <leader>gb :Gblame<CR>
+noremap <leader>gs :Gstatus<CR>
+noremap <leader>gw :Gbrowse<CR>
+noremap <leader>D :Git! diff<cr>
+noremap <leader>C :Git! diff --cached<cr>
+noremap <leader>G :Git! pget patch
+noremap <leader><leader>d :Gdiff<CR>
+noremap <leader><leader>do :call GdiffOff()<cr>
+function! GdiffOff()
+  windo diffoff
+  windo set nowrap
+  bdelete //0
+endfunction
+vmap <leader>0 :diffget<cr>
+vmap <leader>9 :diffput<cr>
+
+" FLAYOUTS ---------------------------------------------------------------------
+Plug 'vrybas/vim-flayouts'
+nnoremap <leader><Space> :Glc<CR>
+noremap <leader>h  :GllogPatch 200 %<cr>
+noremap <leader><leader>h  :GllogPatch 200<cr>
+
+noremap <leader>gp :call GlpullRequestSummaryOrigin()<cr>
+noremap <leader>gc :call GlpullRequestCommitsOrigin()<cr>
+
+function! GlpullRequestSummaryOrigin()
+  execute 'GlpullRequestSummary origin/'.fugitive#head()
+endfunction
+
+function! GlpullRequestCommitsOrigin()
+  execute 'GlpullRequestCommits origin/'.fugitive#head()
+endfunction
+
+command -nargs=* Gpcheckout call Gpcheckout(<f-args>)
+
+function! Gpcheckout(arg)
+  let cmd = 'git pcheckout '.a:arg
+  echom "Checking out ".a:arg.' ...'
+  call system(cmd)
+  execute 'GlpullRequestSummaryTab'
+  execute 'GlopenFromDiff'
+endfunction
+
+noremap <leader><leader>r :GlresolveConflict<cr>
+
+" MUNDO ------------------------------------------------------------------------
+Plug 'simnalamburt/vim-mundo'
+nnoremap <Leader>u :MundoToggle<CR>
+
+" SURROUND ---------------------------------------------------------------------
+Plug 'tpope/vim-surround'
+
+" SOLARIZED --------------------------------------------------------------------
+Plug 'altercation/vim-colors-solarized'
+
+" SMARTPAIRS -------------------------------------------------------------------
+Plug 'gorkunov/smartpairs.vim'
+
+" NEOMAKE ----------------------------------------------------------------------
+Plug 'neomake/neomake'
+let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_error_sign = {
+    \ 'text': 'E>',
+    \ 'texthl': 'WarningMsg',
+    \ }
+let g:neomake_warning_sign = {
+    \ 'text': '➤',
+    \ 'texthl': 'WarningMsg',
+    \ }
+
+" GITGUTTER --------------------------------------------------------------------
+Plug 'airblade/vim-gitgutter'
+set signcolumn=yes
+"let g:gitgutter_sign_column_always = 1
+let g:gitgutter_eager = 0
+let g:gitgutter_realtime = 0
+
+" CTRLP ------------------------------------------------------------------------
+Plug 'ctrlpvim/ctrlp.vim'
+let g:ctrlp_map = ',,e'
+let g:ctrlp_regexp = 0
+let g:ctrlp_switch_buffer = 'et'
+let g:ctrlp_tabpage_position = 'al'
+let g:ctrlp_clear_cache_on_exit = 1
+let g:ctrlp_custom_ignore = '\v[\/]doc[\/]|\.(git|rsync_cache|idea|)$'
+let g:ctrlp_by_filename = 1
+
+" MRU --------------------------------------------------------------------------
 Plug 'yegappan/mru'
+
+" VINEGAR ----------------------------------------------------------------------
 Plug 'tpope/vim-vinegar'
+
+" ABOLISH ----------------------------------------------------------------------
 Plug 'tpope/vim-abolish'
+
+" TERMINUS ---------------------------------------------------------------------
 Plug 'wincent/terminus'
-Plug 'pangloss/vim-javascript'
 
 function! DoRemote(arg)
   UpdateRemotePlugins
 endfunction
+
+" DEOPLETE ---------------------------------------------------------------------
 Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#disable_auto_complete = 1
+
+" ULTISNIPS --------------------------------------------------------------------
 Plug 'SirVer/ultisnips'
+let g:UltiSnipsSnippetsDir='~/.vim/snippets'
+let g:UltiSnipsEditSplit='vertical'
+nnoremap <leader>ue :UltiSnipsEdit<cr>
+
+" SNIPPETS ---------------------------------------------------------------------
 Plug 'honza/vim-snippets'
+
+" SUPERTAB ---------------------------------------------------------------------
 Plug 'ervandew/supertab'
+
+" INDENTLINE -------------------------------------------------------------------
 Plug 'Yggdroot/indentLine'
+let g:indentLine_color_gui = '#f2e4be'
+let g:indentLine_char = '│'
+
+" SYNTASTIC --------------------------------------------------------------------
 Plug 'scrooloose/syntastic'
+let g:syntastic_enable_signs=1
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_sass_checkers = ['sass_lint']
+let g:elm_syntastic_show_warnings = 1
+let g:syntastic_auto_loc_list = 1
+
+" JAVASCRIPT -------------------------------------------------------------------
+Plug 'pangloss/vim-javascript'
+let g:javascript_plugin_jsdoc = 1
+let g:javascript_plugin_flow = 1
+
+" FLOW -------------------------------------------------------------------------
+Plug 'flowtype/vim-flow', { 'do': 'npm install -g flow-bin' }
+au BufNewFile,BufRead *.flow set filetype=javascript
+
+" JSX --------------------------------------------------------------------------
+Plug 'mxw/vim-jsx'
+
+" GRAPHQL ----------------------------------------------------------------------
+Plug 'jparise/vim-graphql'
+
+" STYLED COMPONENTS ------------------------------------------------------------
+Plug 'fleischie/vim-styled-components'
+
+" JSDOC ------------------------------------------------------------------------
+Plug 'heavenshell/vim-jsdoc'
+
+" TERNJS -----------------------------------------------------------------------
+Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
+
+" JSCTAGS ----------------------------------------------------------------------
+Plug 'ramitos/jsctags'
+
+" JSPC -------------------------------------------------------------------------
+Plug 'othree/jspc.vim'
+
+" NODE -------------------------------------------------------------------------
+Plug 'moll/vim-node'
+
+" JSON -------------------------------------------------------------------------
+Plug 'elzr/vim-json'
+let g:vim_json_syntax_conceal = 0
+
+" EJS --------------------------------------------------------------------------
+Plug 'nikvdp/ejs-syntax'
+
+" COFFEE-SCRIPT ----------------------------------------------------------------
+Plug 'kchmck/vim-coffee-script'
+
+" CJSX -------------------------------------------------------------------------
+Plug 'mtscout6/vim-cjsx'
+au BufNewFile,BufRead *.cjsx set filetype=coffee
+
+" CSS3 -------------------------------------------------------------------------
+Plug 'hail2u/vim-css3-syntax'
+
+" SLIM -------------------------------------------------------------------------
+Plug 'slim-template/vim-slim'
+au BufNewFile,BufRead *.skim set filetype=slim
 
 call plug#end()
 
@@ -124,6 +329,13 @@ set nocursorline
 " Folds
 set foldlevel=1
 highlight clear Folded
+
+" Babel
+au BufNewFile,BufRead .babelrc set filetype=json
+
+" Prettier
+autocmd FileType javascript set formatprg=prettier\ --no-semi\ --single-quote\ --stdin
+autocmd FileType json set formatprg=prettier\ --stdin
 
 "*****************************************************************************"
 "
@@ -208,146 +420,6 @@ nmap <silent> <leader><leader>ts :set nolist!<CR>
 
 " Copy the whole buffer
 nmap <silent><leader>y :w !pbcopy<CR><CR>
-
-"*****************************************************************************"
-"
-" PLUGIN CONFIGURATION
-"
-"*****************************************************************************"
-
-" Vim-Ruby
-let g:rubycomplete_buffer_loading = 1
-let g:rubycomplete_classes_in_global = 1
-let g:rubycomplete_rails = 1
-let g:rubycomplete_load_gemfile = 1
-let g:rubycomplete_use_bundler = 1
-let ruby_fold = 1
-let ruby_spellcheck_strings = 1
-
-
-" NERDTree
-
-" tree expand behaviour fix (locate and highlight current file)
-fun! NERDTreeToggleWithFind()
-  NERDTreeToggle
-  exe "normal \<c-w>l"
-  if bufwinnr(t:NERDTreeBufName) > 0
-    NERDTreeFind
-  end
-endf
-
-let NERDTreeShowHidden=1
-let NERDTreeMapJumpPrevSibling='none'
-let NERDTreeMapJumpNextSibling='none'
-let NERDTreeCascadeOpenSingleChildDir=1
-nmap <silent><leader>d :call NERDTreeToggleWithFind()<CR>
-
-" Easymotion
-map f <Plug>(easymotion-prefix)
-
-"Bufexplorer
-let g:bufExplorerFindActive=0
-nmap <leader>f :BufExplorer<CR>
-
-" Fugitive.vim
-noremap <leader>gb :Gblame<CR>
-noremap <leader>gs :Gstatus<CR>
-noremap <leader>gw :Gbrowse<CR>
-noremap <leader>D :Git! diff<cr>
-noremap <leader>C :Git! diff --cached<cr>
-noremap <leader>G :Git! pget patch
-noremap <leader><leader>d :Gdiff<CR>
-noremap <leader><leader>do :call GdiffOff()<cr>
-function! GdiffOff()
-  windo diffoff
-  windo set nowrap
-  bdelete //0
-endfunction
-vmap <leader>0 :diffget<cr>
-vmap <leader>9 :diffput<cr>
-
-" Flayouts
-nnoremap <leader><Space> :Glc<CR>
-noremap <leader>h  :GllogPatch 200 %<cr>
-noremap <leader><leader>h  :GllogPatch 200<cr>
-
-noremap <leader>gp :call GlpullRequestSummaryOrigin()<cr>
-noremap <leader>gc :call GlpullRequestCommitsOrigin()<cr>
-
-function! GlpullRequestSummaryOrigin()
-  execute 'GlpullRequestSummary origin/'.fugitive#head()
-endfunction
-
-function! GlpullRequestCommitsOrigin()
-  execute 'GlpullRequestCommits origin/'.fugitive#head()
-endfunction
-
-command -nargs=* Gpcheckout call Gpcheckout(<f-args>)
-
-function! Gpcheckout(arg)
-  let cmd = 'git pcheckout '.a:arg
-  echom "Checking out ".a:arg.' ...'
-  call system(cmd)
-  execute 'GlpullRequestSummaryTab'
-  execute 'GlopenFromDiff'
-endfunction
-
-noremap <leader><leader>r :GlresolveConflict<cr>
-
-" Mundo
-nnoremap <Leader>u :MundoToggle<CR>
-
-" Neomake
-let g:neomake_javascript_enabled_makers = ['eslint']
-
-let g:neomake_error_sign = {
-    \ 'text': 'E>',
-    \ 'texthl': 'WarningMsg',
-    \ }
-
-let g:neomake_warning_sign = {
-    \ 'text': '➤',
-    \ 'texthl': 'WarningMsg',
-    \ }
-
-" GitGutter.vim
-set signcolumn=yes
-"let g:gitgutter_sign_column_always = 1
-let g:gitgutter_eager = 0
-let g:gitgutter_realtime = 0
-
-" CtrlP.vim
-let g:ctrlp_map = ',,e'
-let g:ctrlp_regexp = 0
-let g:ctrlp_switch_buffer = 'et'
-let g:ctrlp_tabpage_position = 'al'
-let g:ctrlp_clear_cache_on_exit = 1
-let g:ctrlp_custom_ignore = '\v[\/]doc[\/]|\.(git|rsync_cache|idea|)$'
-let g:ctrlp_by_filename = 1
-
-" Ack.vim
-nnoremap <leader>a :Ack<space>
-set grepprg=ack\ -a
-
-" Deoplete.
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#disable_auto_complete = 1
-
-" UltiSnips
-let g:UltiSnipsSnippetsDir='~/.vim/snippets'
-let g:UltiSnipsEditSplit='vertical'
-nnoremap <leader>ue :UltiSnipsEdit<cr>
-
-" IdentLine
-let g:indentLine_color_gui = '#f2e4be'
-let g:indentLine_char = '│'
-
-" Syntastic
-let g:syntastic_enable_signs=1
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_sass_checkers = ['sass_lint']
-let g:elm_syntastic_show_warnings = 1
-let g:syntastic_auto_loc_list = 1
 
 "*****************************************************************************"
 "
