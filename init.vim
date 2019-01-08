@@ -5,6 +5,9 @@
 
 "*****************************************************************************"
 
+" Map <Leader>
+let mapleader = ","
+
 call plug#begin('~/.vim/plugged')
 
 " RUBY -------------------------------------------------------------------------
@@ -106,6 +109,9 @@ endfunction
 
 noremap <leader><leader>r :GlresolveConflict<cr>
 
+" RHUBARB ----------------------------------------------------------------------
+Plug 'tpope/vim-rhubarb'
+
 " MUNDO ------------------------------------------------------------------------
 Plug 'simnalamburt/vim-mundo'
 nnoremap <Leader>u :MundoToggle<CR>
@@ -118,6 +124,9 @@ Plug 'altercation/vim-colors-solarized'
 
 " SMARTPAIRS -------------------------------------------------------------------
 Plug 'gorkunov/smartpairs.vim'
+
+" AUTO-PAIRS -------------------------------------------------------------------
+Plug 'jiangmiao/auto-pairs'
 
 " NEOMAKE ----------------------------------------------------------------------
 Plug 'neomake/neomake'
@@ -192,7 +201,7 @@ let g:syntastic_enable_signs=1
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_sass_checkers = ['sass_lint']
 let g:elm_syntastic_show_warnings = 1
-let g:syntastic_auto_loc_list = 1
+let g:syntastic_auto_loc_list = 0
 
 " JAVASCRIPT -------------------------------------------------------------------
 Plug 'pangloss/vim-javascript'
@@ -206,6 +215,7 @@ au BufNewFile,BufRead *.flow set filetype=javascript
 
 " JSX --------------------------------------------------------------------------
 Plug 'mxw/vim-jsx'
+let g:jsx_ext_required = 0
 
 " GRAPHQL ----------------------------------------------------------------------
 Plug 'jparise/vim-graphql'
@@ -248,6 +258,9 @@ Plug 'hail2u/vim-css3-syntax'
 " SLIM -------------------------------------------------------------------------
 Plug 'slim-template/vim-slim'
 au BufNewFile,BufRead *.skim set filetype=slim
+
+" SLIM -------------------------------------------------------------------------
+Plug 'ekalinin/Dockerfile.vim'
 
 call plug#end()
 
@@ -410,6 +423,7 @@ nnoremap <leader>m :noh<CR>
 " Toggle fold/unfold
 nnoremap <leader>z zR
 nnoremap <leader><leader>z zm
+vmap - zf
 
 " Search Replace with Confirmation
 nnoremap <leader>S :SearchReplaceConfirm<Space>
@@ -449,9 +463,9 @@ endfunction
 function! FullSave()
     call RemoveSpaces()
     execute 'w!'
-    execute 'mkview'
-    execute 'Neomake'
-    execute 'GitGutter'
+"    execute 'mkview'
+"    execute 'Neomake'
+"    execute 'GitGutter'
 endfunction
 
 function! ResetColours()
