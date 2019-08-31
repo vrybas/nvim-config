@@ -200,6 +200,8 @@ Plug 'scrooloose/syntastic'
 let g:syntastic_enable_signs=1
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_sass_checkers = ['sass_lint']
+let g:syntastic_go_checkers = ['govet', 'errcheck', 'go']
+"let g:syntastic_go_gometalinter_args = ['--disable-all', '--enable=errcheck']
 let g:elm_syntastic_show_warnings = 1
 let g:syntastic_auto_loc_list = 0
 
@@ -216,6 +218,32 @@ au BufNewFile,BufRead *.flow set filetype=javascript
 " JSX --------------------------------------------------------------------------
 Plug 'mxw/vim-jsx'
 let g:jsx_ext_required = 0
+
+" GOLANG -----------------------------------------------------------------------
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+au FileType go set noexpandtab
+au FileType go set shiftwidth=4
+au FileType go set softtabstop=4
+au FileType go set tabstop=4
+
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_types = 1
+let g:go_auto_sameids = 0
+let g:go_fmt_command = "goimports"
+let g:ale_sign_error = '⤫'
+let g:ale_sign_warning = '⚠'" Enable integration with airline.
+let g:airline#extensions#ale#enabled = 1"
+let g:go_auto_type_info = 1
+
+"let g:godef_split = 0
+let g:go_fmt_fail_silently = 0
+let g:go_list_type = 'quickfix'
 
 " GRAPHQL ----------------------------------------------------------------------
 Plug 'jparise/vim-graphql'
@@ -303,6 +331,7 @@ set sw=2
 set statusline=%f\ %=%{fugitive#statusline()}%(\ %c%)
 
 " Colorscheme
+set background=dark
 colorscheme solarized
 
 " Show line numbers
