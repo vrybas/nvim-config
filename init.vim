@@ -247,7 +247,7 @@ let g:airline#extensions#ale#enabled = 1"
 let g:go_auto_type_info = 1
 
 "let g:godef_split = 0
-let g:go_fmt_fail_silently = 1
+let g:go_fmt_fail_silently = 0
 let g:go_list_type = 'quickfix'
 
 " COC (for Golang) -------------------------------------------------------------
