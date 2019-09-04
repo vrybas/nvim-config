@@ -67,9 +67,9 @@ Plug 'tpope/vim-fugitive'
 noremap <leader>gb :Gblame<CR>
 noremap <leader>gs :Gstatus<CR>
 nmap <leader>gw :Gbrowse<CR>
-noremap <leader>D :Git! diff<cr>
-noremap <leader>C :Git! diff --cached<cr>
-noremap <leader>G :Git! pget patch
+noremap <leader>D :0Git diff<cr>
+noremap <leader>C :0Git diff --cached<cr>
+noremap <leader>G :0Git pget patch
 noremap <leader><leader>d :Gdiff<CR>
 noremap <leader><leader>do :call GdiffOff()<cr>
 function! GdiffOff()
