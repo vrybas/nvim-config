@@ -66,7 +66,7 @@ map f <Plug>(easymotion-prefix)
 Plug 'tpope/vim-fugitive'
 noremap <leader>gb :Gblame<CR>
 noremap <leader>gs :Gstatus<CR>
-noremap <leader>gw :Gbrowse<CR>
+nmap <leader>gw :Gbrowse<CR>
 noremap <leader>D :Git! diff<cr>
 noremap <leader>C :Git! diff --cached<cr>
 noremap <leader>G :Git! pget patch
@@ -245,6 +245,7 @@ let g:ale_sign_error = '⤫'
 let g:ale_sign_warning = '⚠'" Enable integration with airline.
 let g:airline#extensions#ale#enabled = 1"
 let g:go_auto_type_info = 0
+let g:go_doc_popup_window = 1
 
 "let g:godef_split = 0
 let g:go_fmt_fail_silently = 0
@@ -285,13 +286,25 @@ nmap <silent> [c <Plug>(coc-diagnostic-prev)
 nmap <silent> ]c <Plug>(coc-diagnostic-next)
 
 " Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gf <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gd :GoDoc<CR>
+nmap <silent> gb :GoDocBrowser<CR>
+nmap <silent> gt :GoTest<CR>
+nmap <silent> gc :GoCoverageToggle<CR>
+nmap <silent> gi :GoDescribe<CR>
 
 " Use U to show documentation in preview window
 nnoremap <silent> U :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
 
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
@@ -300,21 +313,21 @@ nmap <leader>rn <Plug>(coc-rename)
 vmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
 " Show all diagnostics
-nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+"nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
 " Manage extensions
-nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+"nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
 " Show commands
-nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+"nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
 " Find symbol of current document
-nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+"nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
 " Search workspace symbols
-nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+"nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
 " Do default action for next item.
-nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+"nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 " Do default action for previous item.
-nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+"nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
-nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+"nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
 " GRAPHQL ----------------------------------------------------------------------
 Plug 'jparise/vim-graphql'
