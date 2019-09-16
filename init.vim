@@ -56,7 +56,7 @@ Plug 'christoomey/vim-tmux-navigator'
 " BUFEXPLORER ------------------------------------------------------------------
 Plug 'vim-scripts/bufexplorer.zip'
 let g:bufExplorerFindActive=0
-nmap <leader>f :BufExplorer<CR>
+nnoremap <leader>l :BufExplorer<CR>
 
 " EASYMOTION -------------------------------------------------------------------
 Plug 'easymotion/vim-easymotion'
@@ -230,6 +230,8 @@ au FileType go set noexpandtab
 au FileType go set shiftwidth=4
 au FileType go set softtabstop=4
 au FileType go set tabstop=4
+au FileType go set foldmethod=syntax
+au FileType go set foldlevel=0
 
 let g:go_highlight_build_constraints = 1
 let g:go_highlight_extra_types = 1
@@ -575,8 +577,9 @@ endfunction
 
 function! FullSave()
     call RemoveSpaces()
+    execute 'mkview'
     execute 'w!'
-"    execute 'mkview'
+		silent! loadview
 "    execute 'Neomake'
 "    execute 'GitGutter'
 endfunction
