@@ -376,6 +376,10 @@ au BufNewFile,BufRead *.skim set filetype=slim
 " SLIM -------------------------------------------------------------------------
 Plug 'ekalinin/Dockerfile.vim'
 
+" SQL -----------------------------------------------------------------------
+Plug 'shmup/vim-sql-syntax'
+au FileType sql set expandtab
+
 call plug#end()
 
 "*****************************************************************************"
