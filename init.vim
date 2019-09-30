@@ -292,7 +292,7 @@ nmap <silent> gf <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> gd :GoDoc<CR>
-nmap <silent> gb :GoDocBrowser<CR>
+nmap <silent> gb :GoBuild<CR>
 nmap <silent> gt :GoTest<CR>
 nmap <silent> gc :GoCoverageToggle<CR>
 nmap <silent> gi :GoDescribe<CR>
