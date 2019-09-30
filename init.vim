@@ -77,8 +77,8 @@ function! GdiffOff()
   windo set nowrap
   bdelete //0
 endfunction
-vmap <leader>0 :diffget<cr>
-vmap <leader>9 :diffput<cr>
+vmap <leader>- :diffget<cr>
+vmap <leader>= :diffput<cr>
 
 " FLAYOUTS ---------------------------------------------------------------------
 Plug 'vrybas/vim-flayouts'
