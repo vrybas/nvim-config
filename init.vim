@@ -417,7 +417,7 @@ set sw=2
 set statusline=%f\ %=%{fugitive#statusline()}%(\ %c%)
 
 " Colorscheme
-set background=dark
+set background=light
 colorscheme solarized
 
 " Show line numbers
