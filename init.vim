@@ -581,9 +581,9 @@ function! FullSave()
     call RemoveSpaces()
     execute 'mkview'
     execute 'w!'
-		silent! loadview
+		loadview
 "    execute 'Neomake'
-"    execute 'GitGutter'
+    execute 'GitGutter'
 endfunction
 
 function! ResetColours()
