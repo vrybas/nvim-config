@@ -288,14 +288,14 @@ nmap <silent> [c <Plug>(coc-diagnostic-prev)
 nmap <silent> ]c <Plug>(coc-diagnostic-next)
 
 " Remap keys for gotos
-nmap <silent> gf <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gr <Plug>(coc-references)
-nmap <silent> gd :GoDoc<CR>
 nmap <silent> gb :GoBuild<CR>
-nmap <silent> gt :GoTest<CR>
 nmap <silent> gc :GoCoverageToggle<CR>
+nmap <silent> gd :GoDoc<CR>
+nmap <silent> gf <Plug>(coc-definition)
 nmap <silent> gi :GoDescribe<CR>
+nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gt :GoTest<CR>
+nmap <silent> gy <Plug>(coc-type-definition)
 
 " Use U to show documentation in preview window
 nnoremap <silent> U :call <SID>show_documentation()<CR>
