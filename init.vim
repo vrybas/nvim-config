@@ -480,7 +480,6 @@ let mapleader = ","
 
 " Call Save function to save file and peform other work.
 nnoremap <Space> :call FullSave()<CR>
-nnoremap <leader><leader><Space> :call FullSave()<CR>
 
 " Toggle Relative Line Numbers
 nmap <leader>r :call ToggleRelativeLineNumbers()<CR>
