@@ -459,6 +459,9 @@ set nocursorline
 set foldlevel=1
 highlight clear Folded
 
+" Autowrap & prefix comments with current leader
+set formatoptions=qjcro
+
 " Babel
 au BufNewFile,BufRead .babelrc set filetype=json
 
